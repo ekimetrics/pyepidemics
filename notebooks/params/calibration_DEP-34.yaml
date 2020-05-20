@@ -1,0 +1,55 @@
+calibrated_params:
+  beta_high: 1.8304048665257298
+  beta_low: 0.1549590137280206
+  death_duration_hospital: 14.816060025489845
+  death_duration_icu: 57.0876228199194
+  offset: -23.01178484730607
+  proba_death_hospital: 0.18813781923141018
+  proba_icu: 0.18999335159879266
+  recovery_duration_hospital: 6.992256351603324
+  recovery_duration_icu: 10.396777417185854
+default_params:
+  N: 1176145.0
+  beta:
+  - 1.8304048665257298
+  - - 0.1549590137280206
+  - - 22.01178484730607
+  incubation_duration: 4.0
+  proba_death_icu: 0.2
+  proba_mild: 0.5
+  proba_severe: 0.026
+  recovery_duration_asymptomatic: 4.0
+  recovery_duration_mild: 4.0
+  symptoms_to_hospital_duration: 5.5
+  symptoms_to_icu_duration: 7.0
+info:
+  Departement: '34'
+  date: '2020-05-07 00:01:16.808924'
+  init_state:
+    E: 1
+    S: !!python/object/apply:numpy.core.multiarray.scalar
+    - !!python/object/apply:numpy.dtype
+      args:
+      - i8
+      - 0
+      - 1
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - !!binary |
+      UPIRAAAAAAA=
+  loss: 0.11870876445992323
+  loss_D: 0.002224803395010666
+  loss_H: 0.004828777796763368
+  loss_ICU: 0.007038189567827499
+  message: null
+  'on':
+  - D
+  - H
+  - ICU

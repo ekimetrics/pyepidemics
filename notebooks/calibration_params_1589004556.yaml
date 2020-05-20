@@ -1,0 +1,37 @@
+calibrated_params:
+  beta_high: 1.082486293553853
+  beta_low: 0.24340195196793812
+  offset: -14.595414732466296
+default_params:
+  N: 67000000.0
+  beta:
+  - 1.082486293553853
+  - - 0.24340195196793812
+  - - 67.5954147324663
+  death_rate_hospital: 0.0046
+  death_rate_icu: 0.0087
+  incubation_rate: 0.27027027027027023
+  isolation_ratio: 0.75
+  proba_asymptomatic: 0.2
+  proba_icu: 0.182
+  proba_severe: 0.071
+  recovery_rate_asymptomatic: 0.2127659574468085
+  recovery_rate_hospital: 0.046
+  recovery_rate_icu: 0.035
+  recovery_rate_mild: 0.2127659574468085
+  symptoms_to_hospital_rate: 0.18181818181818182
+  symptoms_to_icu_rate: 0.14285714285714285
+info:
+  date: '2020-05-09 08:09:16.574150'
+  init_state:
+    E: 1
+    S: 66999999.0
+  loss: 45.767258015744716
+  loss_D: 204.49148197440923
+  loss_H: 858.2437013780805
+  loss_ICU: 1031.9067229272594
+  message: null
+  'on':
+  - D
+  - H
+  - ICU

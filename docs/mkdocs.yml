@@ -1,0 +1,45 @@
+site_name: pyepidemics
+site_description: 'Pyepidemics library'
+site_author: 'Ekimetrics'
+edit_uri: ""
+theme:
+  name: 'material'
+  # palette:
+  #   primary: brown
+  #   accent: brown
+  features:
+    - tabs
+    - instant
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex
+repo_name: 'pyepidemics'
+repo_url: 'https://github.com/collectif-codata/case7-lockdown-exit-strategy'
+
+extra_css:
+  - ./stylesheets/extra.css
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+
+nav:
+  - Home: 
+    - index.md
+    - Quickstart: model_SIR.ipynb
+  # - Examples:
+  #   - Simple pathfinding: examples/simple_pathfinding.md
+  #   - Simple vision range: examples/simple_visionrange.md
+  # - Resources:
+  #   - resources/pathfinding.md
+  #   - resources/resources.md
+  #   - resources/inspiration.md
+
+plugins:
+  - search
+  - mknotebooks:
+      execute: false
+      enable_default_jupyter_cell_styling: true
+      enable_default_pandas_dataframe_styling: true

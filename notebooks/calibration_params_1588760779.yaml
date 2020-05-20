@@ -1,0 +1,63 @@
+calibrated_params:
+  beta_high: 1.3656101316473013
+  beta_low: 0.1382976089312514
+  death_duration_hospital: 99.2265878921786
+  death_duration_icu: 32.085220376989824
+  offset: 9.040329232972352
+  proba_death_hospital: 0.18664143527000687
+  proba_icu: 0.21236525872887477
+  recovery_duration_hospital: 7.572670558699221
+  recovery_duration_icu: 9.474676956932022
+default_params:
+  N: 67000000.0
+  beta:
+  - 1.3656101316473013
+  - - 0.1382976089312514
+  - - 43.959670767027646
+  incubation_duration: 4
+  proba_death_icu: 0.2
+  proba_mild: 0.5
+  proba_severe: 0.026
+  recovery_duration_asymptomatic: 4
+  recovery_duration_mild: 4
+  symptoms_to_hospital_duration: 5.5
+  symptoms_to_icu_duration: 7
+info:
+  date: '2020-05-06 12:26:19.331337'
+  init_state:
+    E: 1
+    S: 66999999.0
+  loss: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - 0
+    - 1
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    V+lVrVET3z8=
+  loss_D: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    JdjGAyy/tj8=
+  loss_H: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    sCkEaL8ptD8=
+  loss_ICU: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    xIR+ZwhysT8=
+  message: null
+  'on':
+  - D
+  - H
+  - ICU

@@ -1,0 +1,94 @@
+# All numbers are drawn from INSERM paper
+# Some are just mere computations of the table shown in page 19
+# https://www.medrxiv.org/content/10.1101/2020.04.13.20063933v1.full.pdf
+# Figures are calibrated for IDF region
+
+# H to R
+
+recovery_rate_hospital:
+  adults: 0.072
+  seniors: 0.022
+  all: 0.046 # 17 days with proba 0.8
+
+# H to D
+death_rate_hospital:
+  adults: 0.0042
+  seniors: 0.014
+  all: 0.004578 # 44 days with proba 0.2
+
+# ICU to R
+recovery_rate_icu:
+  adults: 0.05
+  seniors: 0.036
+  all: 0.035 # 23 days with proba 0.8
+
+# ICU to D
+death_rate_icu:
+  adults: 0.0074
+  seniors: 0.029
+  all: 0.008716 # 23 days with proba 0.8
+
+
+# If severe symptoms proba of going to ICU
+# Can be used between Is and ICU or H to ICU
+proba_icu:
+  children: 0
+  adults: 0.36
+  seniors: 0.2
+  all: 0.242
+
+
+# If symptomatic, proba of severe symptoms
+# Total probabilities are computed with 80% of being symptomatic
+# Total probabiliy is computed using population distribution
+proba_severe_if_symptomatic:
+  children: 0
+  adults: 0.1
+  seniors: 0.2
+proba_severe:
+  children: 0
+  adults: 0.08
+  seniors: 0.16
+  all: 0.071
+
+
+
+# If symptomatic, proba of mild symptoms
+proba_mild:
+  children: 0
+  adults: 0.7
+  seniors: 0.6
+
+
+# If symptomatic, proba of light symptoms (paucysymptomatic)
+proba_paucy:
+  children: 1
+  adults: 0.2
+  seniors: 0.2
+
+
+# Proba of being asymptomatic
+proba_asymptomatic:
+  all: 0.2
+
+# Incubation period
+incubation_period:
+  all: 5.2
+
+
+# Recovery period mild and asymptomatic
+# Ia and Im to R
+# Warning it does not take into account the 1.5 days of infectiosity without symptoms (prodromal phase)
+# Hence we recover the 3.8, almost 4 from Pasteur paper
+recovery_duration_asymptomatic: 
+  all: 2.3
+
+
+# Population %
+population_distribution:
+  children: 0.26
+  adults: 0.59
+  seniors: 0.15
+
+
+

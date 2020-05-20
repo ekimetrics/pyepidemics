@@ -1,0 +1,39 @@
+calibrated_params:
+  beta_high: 1.415380266050769
+  beta_low: 0.2191053568190674
+  death_duration_hospital: 11.482967718411977
+  death_duration_icu: 55.621034804970904
+  offset: -25.85614450125673
+  proba_death_hospital: 0.1625838222944714
+  proba_icu: 0.16512940326544173
+  recovery_duration_hospital: 17.83301081952062
+  recovery_duration_icu: 7.371498165860213
+default_params:
+  N: 309907.0
+  beta:
+  - 1.415380266050769
+  - - 0.2191053568190674
+  - - 24.85614450125673
+  incubation_duration: 4.0
+  proba_death_icu: 0.2
+  proba_mild: 0.5
+  proba_severe: 0.026
+  recovery_duration_asymptomatic: 4.0
+  recovery_duration_mild: 4.0
+  symptoms_to_hospital_duration: 5.5
+  symptoms_to_icu_duration: 7.0
+info:
+  Departement: '10'
+  date: '2020-05-06 21:22:19.082508'
+  init_state:
+    E: 1
+    S: 309906
+  loss: 0.21378551849798802
+  loss_D: 0.004900849325036164
+  loss_H: 0.021920066783035128
+  loss_ICU: 0.018883331811382287
+  message: null
+  'on':
+  - D
+  - H
+  - ICU
