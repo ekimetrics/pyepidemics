@@ -17,7 +17,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex
 repo_name: 'pyepidemics'
-repo_url: 'https://github.com/collectif-codata/case7-lockdown-exit-strategy'
+repo_url: 'https://github.com/collectif-codata/pyepidemics'
 
 extra_css:
   - ./stylesheets/extra.css
@@ -40,6 +40,6 @@ nav:
 plugins:
   - search
   - mknotebooks:
-      execute: false
+      execute: true
       enable_default_jupyter_cell_styling: true
       enable_default_pandas_dataframe_styling: true
