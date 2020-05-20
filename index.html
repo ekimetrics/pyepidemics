@@ -41,8 +41,6 @@
     
       <link rel="stylesheet" href="css/ansi-colours.css">
     
-      <link rel="stylesheet" href="css/jupyter-cells.css">
-    
       <link rel="stylesheet" href="css/pandas-dataframe.css">
     
     
@@ -128,7 +126,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/collectif-codata/case7-lockdown-exit-strategy" title="Go to repository" class="md-source">
+<a href="https://github.com/collectif-codata/pyepidemics" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -169,6 +167,19 @@
   
 
       
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="model_SIR/" class="md-tabs__link">
+          Tutorials
+        </a>
+      
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -194,7 +205,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/collectif-codata/case7-lockdown-exit-strategy" title="Go to repository" class="md-source">
+<a href="https://github.com/collectif-codata/pyepidemics" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -261,8 +272,62 @@
 
 
   <li class="md-nav__item">
-    <a href="model_SIR/" title="Quickstart" class="md-nav__link">
+    <a href="quickstart/" title="Quickstart" class="md-nav__link">
       Quickstart
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="references/" title="References" class="md-nav__link">
+      References
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Tutorials
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Tutorials
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="model_SIR/" title="SIR model" class="md-nav__link">
+      SIR model
     </a>
   </li>
 
@@ -304,11 +369,36 @@
                 
                 
                 <h1 id="welcome-to-pyepidemics-documentation">Welcome to pyepidemics documentation</h1>
-<p>Pyepidemics is a Python library to easily create and optimize epidemics compartmental models, simulate policies and their impact.</p>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<p>This library was developed during COVID19 Pandemics, the focus is mostly for French cases but it could be applied to other countries</p>
+<p><img alt="logo" src="img/logo_pyepidemics.png" /></p>
+<p><strong>Open-source epidemics modeling Python library</strong></p>
+<p><em>pyepidemics</em> is a Python library to easily manipulate epidemiological models (SIR, SEIR, COVID19), forecast, and test policy scenarios. Main features are: </p>
+<ul>
+<li>Creation of classical compartmental models (SIR, SEIR, SEIDR, etc...)</li>
+<li>Creation of COVID19 related model (with ICU and different levels of symptoms)</li>
+<li>Creation of custom compartmental model</li>
+<li>Easy extend to compartmental model on different levels (by age, by region, by age and region, etc...)</li>
+<li>Implementation of contact matrices</li>
+<li>Implementation of policies (lockdown, tracing, testing, etc...)</li>
+<li>Calibration of epidemiological parameters on real-world data using Bayesian optimization </li>
+<li>Data helpers to get up-to-date data (cases, beds availability, population contact matrices) (NB as of today only for France cases)</li>
+<li>Simple curve fitting algorithms</li>
+<li>Economics modeling on consumption and production</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>This library is under active development, please contact <a href="mailto:theo.alvesdacosta@ekimetrics.com">Théo Alves Da Costa</a> if you need more information and would like to contribute</strong></p>
 </div>
+<h1 id="contributors">Contributors</h1>
+<p><img alt="" src="img/ekimetrics.png" /></p>
+<p>The library has been initially developed by <a href="www.ekimetrics.com">Ekimetrics</a> under the coalition of French AI companies CoData or help French government response to the COVID19 pandemics. Main contributors are:</p>
+<ul>
+<li><a href="mailto:theo.alvesdacosta@ekimetrics.com">Théo Alves Da Costa</a>, Ekimetrics</li>
+<li>Léo Grosjean, Ekimetrics</li>
+<li>Pierre Carles, Ekimetrics</li>
+<li>Nicolas Chesneau, Ekimetrics</li>
+<li>Marianne Chehade, Ekimetrics</li>
+<li>Jean-Baptiste Remy</li>
+</ul>
                 
               
               
@@ -328,7 +418,7 @@
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
         
-          <a href="model_SIR/" title="Quickstart" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="quickstart/" title="Quickstart" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
