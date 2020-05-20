@@ -1,6 +1,7 @@
 # pyepidemics
 ![logo](docs/docs/img/logo_pyepidemics.png)
-Open-source epidemics modeling Python library
+
+**Open-source epidemics modeling Python library**
 
 *pyepidemics* is a Python library to easily manipulate epidemiological models (SIR, SEIR, COVID19), forecast, and test policy scenarios. Main features are: 
 - Creation of classical compartmental models (SIR, SEIR, SEIDR, etc...)
@@ -19,7 +20,8 @@ Open-source epidemics modeling Python library
 
 
 # Contributors
-![](https://hubinstitute.com/sites/default/files/2018-05/ekimetrics.png)
+![](docs/docs/img/ekimetrics.png)
+
 The library has been initially developed by [Ekimetrics](www.ekimetrics.com) under the coalition of French AI companies CoData ot help French government response to the COVID19 pandemics. Main contributors are:
 - [Théo Alves Da Costa](mailto:theo.alvesdacosta@ekimetrics.com), Ekimetrics
 - Léo Grosjean, Ekimetrics
