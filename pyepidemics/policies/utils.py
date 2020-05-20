@@ -53,9 +53,7 @@ def contact_matrix_response(y, t, start, end, coeffs, coeffs_deconfinement=None,
 def case_isolation_response(y, t, start, value, end=np.infty):
     if t < start:
         return 0
-=======
     else:
         return {"category" : np.sum([matrices[k] for k in matrices.keys()],
                                     axis=0)}
->>>>>>> 93f8e1f52d0ccfa20733c0a163e2b8c9c2efea46:pyepidemics/policies/utils.py
 

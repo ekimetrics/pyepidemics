@@ -28,18 +28,14 @@ extra_javascript:
 nav:
   - Home: 
     - index.md
-    - Quickstart: model_SIR.ipynb
-  # - Examples:
-  #   - Simple pathfinding: examples/simple_pathfinding.md
-  #   - Simple vision range: examples/simple_visionrange.md
-  # - Resources:
-  #   - resources/pathfinding.md
-  #   - resources/resources.md
-  #   - resources/inspiration.md
+    - Quickstart: quickstart.md
+    - References: references.md
+  - Tutorials:
+    - SIR model: model_SIR.ipynb
 
 plugins:
   - search
   - mknotebooks:
-      execute: true
-      enable_default_jupyter_cell_styling: true
+      execute: false
+      enable_default_jupyter_cell_styling: false
       enable_default_pandas_dataframe_styling: true
