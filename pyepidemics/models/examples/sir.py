@@ -22,3 +22,7 @@ class SIR(CompartmentalModel):
         self.add_transition("S","I",lambda y,t: self.beta * y["S"] * y["I"] / self.N)
         self.add_transition("I","R",lambda y,t: self.gamma * y["I"])
 
+
+    def R0(self):
+        return self.beta/self.gamma
+

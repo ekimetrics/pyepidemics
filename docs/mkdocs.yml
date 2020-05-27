@@ -7,6 +7,8 @@ theme:
   # palette:
   #   primary: brown
   #   accent: brown
+  # font:
+  #   text: Lato
   features:
     - tabs
     - instant
@@ -16,6 +18,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.arithmatex
+  - toc:
+      permalink: true
 repo_name: 'pyepidemics'
 repo_url: 'https://github.com/collectif-codata/pyepidemics'
 
@@ -31,6 +35,7 @@ nav:
     - Quickstart: quickstart.md
     - References: references.md
   - Tutorials:
+    - Curve fitting: tutorials/curve_fitting.ipynb
     - SIR model: model_SIR.ipynb
 
 plugins:

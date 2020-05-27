@@ -18,7 +18,6 @@ if ipython_info() == "notebook":
     from tqdm import tqdm_notebook as tqdm
 else:
     from tqdm import tqdm
-from numba import jit
 
 # Custom library
 from .state import State
@@ -33,12 +32,19 @@ from ..policies.utils import multiple_sigmoid_response
 class CompartmentalModel:
 
 
-    def __init__(self,compartments,params = None,dimensions = None,offset = None):
+    def __init__(self,compartments,params = None,dimensions = None,offset = None,I0 = 1,start_state = None,start_date = None):
 
         self._states = compartments
         self._dimensions = dimensions
         self._offset = offset
+        self._I0 = I0
+        self._start_state = start_state
+        self._start_date = start_date
         self.params = params
+
+        assert self._start_state in self._states
+
+
 
         if self._dimensions is not None:
             assert isinstance(self._dimensions,dict)
@@ -55,6 +61,21 @@ class CompartmentalModel:
             return 0
         else:
             return int(self._offset)
+
+    @property
+    def I0(self):
+        return self._I0
+
+
+    @property
+    def start_state(self):
+        return self._start_state
+
+    
+    @property
+    def start_date(self):
+        return self._start_date
+
 
     @property
     def states(self):
@@ -102,7 +123,7 @@ class CompartmentalModel:
             return lambda y,t : value
 
     
-    def solve(self,init_state,n_days = 100,start_date = None):
+    def solve(self,n_days = 100,init_state = None,start_date = None):
         """Main ODE solver function to predict future population values in each compartments
         The function will use the network created by transitions between compartments
             - Derivatives are computed using transitions 
@@ -116,6 +137,11 @@ class CompartmentalModel:
         Returns:
             states (States) - a custom pd.DataFrame with population by compartment over time
         """
+
+        # If init state is not given we use I0
+        if init_state is None:
+            assert self.start_state is not None
+            init_state = {self.start_state:self.I0}
 
         # Transform init_state into state object
         init_state = self.make_state(init_state)
@@ -152,6 +178,8 @@ class CompartmentalModel:
         states.build_aggregates(self.states)
 
         # If start date is given, convert to dates
+        if self.start_date is not None:
+            start_date = self.start_date
         if start_date is not None:
             index = pd.to_datetime(start_date) + pd.TimedeltaIndex(states.index,unit = "D")
             states.index = index

@@ -4,13 +4,14 @@
 from ..model import CompartmentalModel
 
 
-class COVID19(CompartmentalModel):
+class COVID19Prodromal(CompartmentalModel):
     def __init__(self,
             N,
             beta,
-            incubation_rate = 1/3.7,               
-            recovery_rate_asymptomatic = 1/4.7,
-            recovery_rate_mild = 1/4.7,
+            incubation_rate = 1/3.7,
+            prodromal_rate = 1/1.5,   
+            recovery_rate_asymptomatic = 1/3.2,
+            recovery_rate_mild = 1/3.2,
             symptoms_to_hospital_rate = 1/5.5,
             symptoms_to_icu_rate = 1/7,
             proba_severe = 0.071,
@@ -21,7 +22,7 @@ class COVID19(CompartmentalModel):
             death_rate_hospital = 0.0046,
             death_rate_icu = 0.0087,
             isolation_ratio = 0.25,
-            offset = None,
+            I0 = None,
     ):
         """COVID19 Compartmental Model
 
@@ -32,7 +33,8 @@ class COVID19(CompartmentalModel):
         params = {
             "N":N,
             "beta":beta,
-            "incubation_rate":incubation_rate,               
+            "incubation_rate":incubation_rate,
+            "prodromal_rate":prodromal_rate,           
             "recovery_rate_asymptomatic":recovery_rate_asymptomatic,
             "recovery_rate_mild":recovery_rate_mild,
             "recovery_rate_hospital":recovery_rate_hospital,
@@ -48,8 +50,9 @@ class COVID19(CompartmentalModel):
         }
 
         # Define compartments name and number
-        compartments = ["S","E","Ia","Im","Is","H","ICU","D","R"]
-        super().__init__(compartments,offset = offset,params = params)
+        compartments = ["S","E","Ip","Ia","Im","Is","H","ICU","D","R"]
+        start_state = "Ip"
+        super().__init__(compartments,I0 = I0,start_state = start_state,params = params)
 
         # Parameters
         self.N = N
@@ -59,12 +62,15 @@ class COVID19(CompartmentalModel):
         # Prepare transitions
         transitions = {
             "S":{
-                "E":lambda y,t : y["S"] / N * self.beta(y,t) * (y["Ia"]+ isolation_ratio * (y["Im"] + y["Is"]))
+                "E":lambda y,t : y["S"] / N * self.beta(y,t) * (y["Ip"] + y["Ia"] + isolation_ratio * (y["Im"] + y["Is"]))
             },
             "E":{
-                "Ia":lambda y,t : incubation_rate * (proba_asymptomatic) * y["E"],
-                "Im":lambda y,t : incubation_rate * (1 - proba_asymptomatic - proba_severe) * y["E"],
-                "Is":lambda y,t : incubation_rate * (proba_severe) * y["E"],
+                "Ip":lambda y,t: incubation_rate * y["E"],
+            },
+            "Ip":{
+                "Ia":lambda y,t : prodromal_rate * (proba_asymptomatic) * y["E"],
+                "Im":lambda y,t : prodromal_rate * (1 - proba_asymptomatic - proba_severe) * y["E"],
+                "Is":lambda y,t : prodromal_rate * (proba_severe) * y["E"],
             },
             "Ia":{
                 "R":lambda y,t : recovery_rate_asymptomatic * y["Ia"],
@@ -91,6 +97,7 @@ class COVID19(CompartmentalModel):
         self.add_transitions(transitions)
 
     def R0(self, beta):
+        raise Exception("R0 is not computed yet for prodromal phase")
         pa = self.params["proba_asymptomatic"]
         ps = self.params["proba_severe"]
         proba_icu = self.params["proba_icu"]
