@@ -22,7 +22,7 @@ class COVID19Prodromal(CompartmentalModel):
             death_rate_hospital = 0.0046,
             death_rate_icu = 0.0087,
             isolation_ratio = 0.25,
-            I0 = None,
+            I0 = 1,
     ):
         """COVID19 Compartmental Model
 
@@ -68,9 +68,9 @@ class COVID19Prodromal(CompartmentalModel):
                 "Ip":lambda y,t: incubation_rate * y["E"],
             },
             "Ip":{
-                "Ia":lambda y,t : prodromal_rate * (proba_asymptomatic) * y["E"],
-                "Im":lambda y,t : prodromal_rate * (1 - proba_asymptomatic - proba_severe) * y["E"],
-                "Is":lambda y,t : prodromal_rate * (proba_severe) * y["E"],
+                "Ia":lambda y,t : prodromal_rate * (proba_asymptomatic) * y["Ip"],
+                "Im":lambda y,t : prodromal_rate * (1 - proba_asymptomatic - proba_severe) * y["Ip"],
+                "Is":lambda y,t : prodromal_rate * (proba_severe) * y["Ip"],
             },
             "Ia":{
                 "R":lambda y,t : recovery_rate_asymptomatic * y["Ia"],

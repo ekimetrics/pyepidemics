@@ -90,7 +90,7 @@ class ParamsOptimizer:
             print(f"... Parameters saved in yaml file {filename}")
 
 
-    def run(self,true,space,init_state,objective_fn = None,n = 100,
+    def run(self,true,space,init_state = None,objective_fn = None,n = 100,
         early_stopping = None,
         timeout = None,
         constraint = None,
@@ -110,7 +110,7 @@ class ParamsOptimizer:
 
         # Prepare Optuna objective function
         if objective_fn is None:
-            objective_fn = lambda params : self.model.objective(true,params,init_state,constraint = constraint)
+            objective_fn = lambda params : self.model.objective(true,params,init_state = init_state,constraint = constraint)
         def objective(trial):
             params = self._sample(trial,space)
             return objective_fn(params)

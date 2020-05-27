@@ -141,7 +141,7 @@ class CompartmentalModel:
         # If init state is not given we use I0
         if init_state is None:
             assert self.start_state is not None
-            init_state = {self.start_state:self.I0}
+            init_state = int(self.I0)
 
         # Transform init_state into state object
         init_state = self.make_state(init_state)
@@ -209,7 +209,8 @@ class CompartmentalModel:
 
         # Special case where we initialize one state in the second compartment and the rest in the first
         elif isinstance(y,int):
-            y = self.make_init_state(self.compartments[0],(self.compartments[1],y))
+            start_state = self.compartments[1] if self.start_state is None else self.start_state
+            y = self.make_init_state(self.compartments[0],(start_state,y))
             y = self.make_state(y)
 
         # Custom exception
@@ -410,14 +411,14 @@ class CompartmentalModel:
 
 
 
-    def objective(self,true,params,init_state,constraint = None,return_dict = False):
+    def objective(self,true,params,init_state = None,constraint = None,return_dict = False):
 
         # Reset model with params
         # Exception will be raised if no custom reset function is implemented
         self.reset(params)
 
         # Make prediction
-        states = self.predict(true,init_state)
+        states = self.predict(true,init_state = init_state)
 
         # Compute and return loss
         cols = true.columns.tolist()
@@ -433,26 +434,26 @@ class CompartmentalModel:
 
 
 
-    def fit(self,true,space,init_state,n = 100,**kwargs):
+    def fit(self,true,space,init_state = None,n = 100,**kwargs):
 
         # Initialize optimizer
         self.opt = ParamsOptimizer(self)
 
         # Run optimizer
-        best = self.opt.run(true,space,init_state,n=n,**kwargs)
+        best = self.opt.run(true,space,init_state = init_state,n=n,**kwargs)
 
         # Reset with best parameters
         self.reset(best)
 
 
-    def predict(self,true,init_state,forecast_days = 0):
+    def predict(self,true,init_state = None,forecast_days = 0):
 
         # Prepare temporal variables
         start_date = true.index[0]
         n_days = len(true) - 1 + forecast_days
 
         # Make prediction using model
-        states = self.solve(init_state,start_date = start_date,n_days = n_days)
+        states = self.solve(init_state = init_state,start_date = start_date,n_days = n_days)
         return states
 
     
