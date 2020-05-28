@@ -34,7 +34,12 @@ class EarlyStoppingError(Exception):
 
 
 class ParamsOptimizer:
+
     def __init__(self,model):
+        """Params Calibration Optimizer
+        This class serves as a wrapper to optimization capabilities of Optuna library applied to Compartmental Models
+        Can be used to calibrate parameters to real data using the .fit() method in models
+        """
 
         # Store model as attribute
         self.model = model
@@ -57,13 +62,22 @@ class ParamsOptimizer:
         return params
 
 
-    def save_params(self,filename = None,message = None,info = None):
+    def save_params(self,filename:str = None,message:str = None,info:dict = None):
+        """Save parameters in a .yaml file
 
+        Args:
+            filename (str, optional): Optional filename. Defaults to None, translated in a unified filename.
+            message (str, optional): To add a given message. Defaults to None.
+            info (dict, optional): To add a dictionary of information. Defaults to None, translated to {}.
+        """
+
+        # Handle default parameters
         if filename is None:
             filename = f"calibration_params_{str(int(time.time()))}.yaml"
         if info is None:
             info = {}
         
+        # JSON preparation
         def clean_dict(x):
             def clean_float(y):
                 try:
@@ -72,6 +86,7 @@ class ParamsOptimizer:
                     return y
             return {k:clean_float(v) for k,v in x.items()}
 
+        # Prepare dictionary
         d = {
             "calibrated_params":self.study.best_params,
             "info":{
@@ -81,10 +96,11 @@ class ParamsOptimizer:
             }
         }
 
-
+        # Add other parameters
         if hasattr(self.model,"params"):
             d["default_params"] = clean_dict({k:v for k,v in self.model.params.items() if k not in self.study.best_params})
 
+        # Save Yaml file
         with open(filename,"w") as file:
             yaml.dump(d,file)
             print(f"... Parameters saved in yaml file {filename}")

@@ -1,6 +1,3 @@
-"""Custom COVID19 Compartmental model
-"""
-
 from ..model import CompartmentalModel
 
 
@@ -23,6 +20,7 @@ class COVID19Prodromal(CompartmentalModel):
             death_rate_icu = 0.0087,
             isolation_ratio = 0.25,
             I0 = 1,
+            **kwargs,
     ):
         """COVID19 Compartmental Model
 
@@ -97,13 +95,22 @@ class COVID19Prodromal(CompartmentalModel):
         self.add_transitions(transitions)
 
     def R0(self, beta):
-        raise Exception("R0 is not computed yet for prodromal phase")
+
+        # Prepare probabilities
         pa = self.params["proba_asymptomatic"]
         ps = self.params["proba_severe"]
         proba_icu = self.params["proba_icu"]
-        recovery_rate_asymptomatic = self.params["recovery_rate_asymptomatic"]
-        recovery_rate_mild = self.params["recovery_rate_mild"]
-        recovery_rate_severe = (1-proba_icu) * self.params["symptoms_to_hospital_rate"] + proba_icu * self.params["symptoms_to_icu_rate"]
+
+        # Prepare rates
+        rate_asymptomatic = self.params["recovery_rate_asymptomatic"]
+        rate_mild = self.params["recovery_rate_mild"]
+        rate_severe = (1-proba_icu) * self.params["symptoms_to_hospital_rate"] + proba_icu * self.params["symptoms_to_icu_rate"]
+        rate_prodromal = self.params["prodromal_rate"]
         isolation_ratio = self.params["isolation_ratio"]
 
-        return beta * (pa / recovery_rate_asymptomatic + (isolation_ratio * (1-pa-ps) / recovery_rate_mild) + (isolation_ratio * ps / recovery_rate_severe))
+        return beta * (
+            1 / rate_prodromal + \
+            pa / rate_asymptomatic + \
+            (isolation_ratio * (1-pa-ps) / rate_mild) + \
+            (isolation_ratio * ps / rate_severe) \
+        )

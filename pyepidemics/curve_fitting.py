@@ -1,6 +1,3 @@
-"""Inspiration
-https://medium.com/analytics-vidhya/how-to-predict-when-the-covid-19-pandemic-will-stop-in-your-country-with-python-d6fbb2425a9f
-"""
 
 
 import numpy as np
@@ -10,13 +7,39 @@ import math
 import scipy.special as sp
 from scipy.optimize import curve_fit
 
-def logistic_fn(X, a, mu,k):
+
+def logistic_fn(X: np.ndarray, a:float, mu:float,k:float) -> np.ndarray:
+    """Logistic function wrapper
+
+    Args:
+        X (np.ndarray): Input vector
+        a (float): Scale
+        mu (float): Center
+        k (float): Inflection factor
+
+    Returns:
+        np.ndarray: Function output
+    """
     y = a / (1 + np.exp(-k*(X-mu)))
     return y
 
-def gaussian_fn(X, a, mu, sigma):
+
+
+def gaussian_fn(X: np.ndarray, a:float, mu:float, sigma:float) -> np.ndarray:
+    """Gaussian function wrapper
+
+    Args:
+        X (np.ndarray): Input
+        a (float): Scale
+        mu (float): Center
+        sigma (float): Standard deviation
+
+    Returns:
+        np.ndarray: Function output
+    """
     y = a * np.exp(-0.5 * ((X-mu)/sigma)**2)
     return y
+
 
 
 def skew_helper(X,a,mu,sigma,alpha,c):
@@ -33,6 +56,15 @@ def skewed_gaussian_fn(X,a,mu,sigma,alpha,c):
 
 class CurveFittingModel:
     def __init__(self,fn):
+        """Curve fitting wrapper
+        Inspiration [from this medium article](https://medium.com/analytics-vidhya/how-to-predict-when-the-covid-19-pandemic-will-stop-in-your-country-with-python-d6fbb2425a9f)
+
+        Args:
+            fn (str or callable): The surrogate function to fit
+
+        Raises:
+            Exception: if string argument is none of logistic, gaussian or skewed_gaussian
+        """
 
         self._options_fn_str = ["logistic","gaussian","skewed_gaussian"]
 

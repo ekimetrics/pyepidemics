@@ -1,13 +1,15 @@
-"""Simple SIR Model
-Inspiration from towardsdatascience.com/infectious-disease-modelling-beyond-the-basic-sir-model-216369c584c4
-"""
-
-
 from ..model import CompartmentalModel
 
 
 class SIR(CompartmentalModel):
-    def __init__(self,N,beta,gamma):
+    def __init__(self,N:int,beta:float,gamma:float):
+        """Classical SIR Model
+
+        Args:
+            N (int): Population considered
+            beta (float): How many person each person infects per day
+            gamma (float): Rate of infection, ie duration = 1/gamma
+        """
         
         # Define compartments name and number
         compartments = ["S","I","R"]
@@ -23,6 +25,11 @@ class SIR(CompartmentalModel):
         self.add_transition("I","R",lambda y,t: self.gamma * y["I"])
 
 
-    def R0(self):
+    def R0(self) -> float:
+        """Computes the reproduction factor of the model aka the R0
+
+        Returns:
+            float: Computed R0
+        """
         return self.beta/self.gamma
 
