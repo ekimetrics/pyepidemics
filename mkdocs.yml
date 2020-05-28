@@ -45,6 +45,7 @@ nav:
   #   - Calibration optimizer: documentation/params_optimizer.md
   #   - Datasets: documentation/datasets.md
   - Tutorials:
+    - Creating a custom model: tutorials/custom_model.ipynb
     - Curve fitting: tutorials/curve_fitting.ipynb
     # - SIR model: model_SIR.ipynb
 

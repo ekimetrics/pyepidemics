@@ -32,17 +32,19 @@ from ..policies.utils import multiple_sigmoid_response
 class CompartmentalModel:
 
 
-    def __init__(self,compartments,params = None,dimensions = None,offset = None,I0 = 1,start_state = None,start_date = None):
+    def __init__(self,compartments,params = None,dimensions = None,offset = None,I0 = 1,initial_state = None,start_state = None,start_date = None):
 
         self._states = compartments
         self._dimensions = dimensions
         self._offset = offset
         self._I0 = I0
-        self._start_state = start_state
+        self._initial_state = initial_state if initial_state is not None else compartments[0]
+        self._start_state = start_state if start_state is not None else compartments[1]
         self._start_date = start_date
         self.params = params
 
         assert self._start_state in self._states
+        assert self._initial_state in self._states
 
 
 
@@ -70,6 +72,10 @@ class CompartmentalModel:
     @property
     def start_state(self):
         return self._start_state
+
+    @property
+    def initial_state(self):
+        return self._initial_state
 
     
     @property
@@ -123,7 +129,7 @@ class CompartmentalModel:
             return lambda y,t : value
 
     
-    def solve(self,n_days = 100,init_state = None,start_date = None):
+    def solve(self,n_days = 100,init_state = None,start_date = None,d = 1):
         """Main ODE solver function to predict future population values in each compartments
         The function will use the network created by transitions between compartments
             - Derivatives are computed using transitions 
@@ -150,20 +156,22 @@ class CompartmentalModel:
         tol = 2
         assert hasattr(self,"compartments")
         assert len(init_state) == len(self.compartments)
-        assert hasattr(self,"N")
-        assert np.abs(init_state.sum() - self.N) < tol,f"Init state {init_state.values} does not sum to total population {self.N}"
+        # assert hasattr(self,"N")
+        # assert np.abs(init_state.sum() - self.N) < tol,f"Init state {init_state.values} does not sum to total population {self.N}"
         assert n_days > self.offset
  
         # Grid of time points (in days)
         # Take offset into account
         offset = self.offset
-        t = np.linspace(0, n_days - offset, n_days - offset +1)
+        t = np.linspace(0, n_days - offset, (n_days - offset +1)*d)
 
         # Integrate the model equations over the time grid, t.
         states = odeint(self.derivative, init_state, t)
 
         # Converts to DataFrame and then to custom object
         states = pd.DataFrame(states,columns = self.compartments)
+        if d > 1: 
+            states.index = states.index / d
 
         # Add offset into account
         if offset > 0:
@@ -209,8 +217,7 @@ class CompartmentalModel:
 
         # Special case where we initialize one state in the second compartment and the rest in the first
         elif isinstance(y,int):
-            start_state = self.compartments[1] if self.start_state is None else self.start_state
-            y = self.make_init_state(self.compartments[0],(start_state,y))
+            y = self.make_init_state(self.initial_state,(self.start_state,y))
             y = self.make_state(y)
 
         # Custom exception
@@ -285,6 +292,9 @@ class CompartmentalModel:
 
         return dydt
 
+
+    def add_static_derivative(self,node,transition):
+        self.network.add_static_derivative(node,transition)
 
     def add_transition(self,start,end,transition,granularity = False):
 

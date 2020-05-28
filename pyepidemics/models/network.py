@@ -10,6 +10,7 @@ warnings.filterwarnings("ignore")
 class CompartmentNetwork:
     def __init__(self,nodes = None):
         self.graph = nx.DiGraph()
+        self.static = {}
         if nodes is not None:
             self.add_nodes(nodes)
 
@@ -22,6 +23,17 @@ class CompartmentNetwork:
     def add_transition(self,start,end,transition):
         attributes = {"transition":transition}
         self.graph.add_edge(start,end,**attributes)
+
+    def add_static_derivative(self,node,fn):
+        self.static[node] = fn
+
+    def get_static_derivative(self,node,y,t):
+
+        if node in self.static:
+            return self.static[node](y,t)
+        else:
+            return 0
+
 
     def get_in_neighbors(self,node):
         in_edges = list(self.graph.in_edges(node))
@@ -43,6 +55,7 @@ class CompartmentNetwork:
             value = value(y,t)
         return value
 
+
     def compute_derivative(self,node,y,t):
 
         derivative = 0
@@ -54,6 +67,9 @@ class CompartmentNetwork:
         # Add for in neighbors
         for neighbor in self.get_in_neighbors(node):
             derivative += self.get_transition(neighbor,node,y,t)
+
+        # Add node derivative
+        derivative += self.get_static_derivative(node,y,t)
 
         # Safety check to avoid getting an iterable in granular models
         def iterable(obj):
