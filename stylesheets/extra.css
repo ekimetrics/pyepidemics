@@ -1,3 +1,23 @@
+.md-content__inner.md-typeset {
+    font-size:14px ;
+    /* padding-left: 25px;
+    border-left: 4px solid rgba(230, 230, 230);
+    margin-bottom: 80px; */
+  }
+
+.output_area{
+    font-size:12px;
+}
+
+.md-grid{
+    max-width: 70rem;
+}
+
+.md-sidebar--secondary{
+    margin-left: 58rem;
+
+}
+
 .md-header{
     /* background-image: linear-gradient(to left, #30cfd0 0%, #330867 100%); */
     /* background-image: linear-gradient(to left, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */

@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Pyepidemics library" name="description"/>
+<link href="https://collectif-codata.github.io/pyepidemics/documentation/model/" rel="canonical"/>
+<meta content="Ekimetrics" name="author"/>
+<link href="../../assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1, mkdocs-material-5.1.0" name="generator"/>
+<title>Model base class - pyepidemics</title>
+<link href="../../assets/stylesheets/main.89dc9fe3.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+</head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#compartmental-models-bases-classes">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="pyepidemics" class="md-header-nav__button md-logo" href="https://collectif-codata.github.io/pyepidemics" title="pyepidemics">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z"></path></svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            pyepidemics
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Model base class
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Type to start searching
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/collectif-codata/pyepidemics" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    pyepidemics
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs md-tabs--active" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+          Home
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../models_classical/">
+          Documentation
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../tutorials/curve_fitting/">
+          Tutorials
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="pyepidemics" class="md-nav__button md-logo" href="https://collectif-codata.github.io/pyepidemics" title="pyepidemics">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z"></path></svg>
+</a>
+    pyepidemics
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/collectif-codata/pyepidemics" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    pyepidemics
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" id="nav-1" type="checkbox"/>
+<label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
+</span>
+</label>
+<nav aria-label="Home" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-1">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+        Home
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../.." title="Welcome to pyepidemics documentation">
+      Welcome to pyepidemics documentation
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../quickstart/" title="Quickstart">
+      Quickstart
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../references/" title="References">
+      References
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
+      Documentation
+      <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
+</span>
+</label>
+<nav aria-label="Documentation" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+        Documentation
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" id="nav-2-1" type="checkbox"/>
+<label class="md-nav__link" for="nav-2-1">
+      Model examples
+      <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
+</span>
+</label>
+<nav aria-label="Model examples" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="nav-2-1">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+        Model examples
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../models_classical/" title="SIR, SEIR, ...">
+      SIR, SEIR, ...
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../models_covid/" title="COVID19">
+      COVID19
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" id="nav-2-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2-2">
+      Model internals
+      <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
+</span>
+</label>
+<nav aria-label="Model internals" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="nav-2-2">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+        Model internals
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Model base class
+        <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z"></path></svg>
+</span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Model base class">
+      Model base class
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model">
+    pyepidemics.models.model
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel">
+    CompartmentalModel
+  </a>
+<nav aria-label="CompartmentalModel" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.make_init_state">
+    make_init_state()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.make_state">
+    make_state()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.solve">
+    solve()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../curve_fitting/" title="Curve fitting">
+      Curve fitting
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../params_optimizer/" title="Calibration optimizer">
+      Calibration optimizer
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../datasets/" title="Datasets">
+      Datasets
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<label class="md-nav__link" for="nav-3">
+      Tutorials
+      <span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path></svg>
+</span>
+</label>
+<nav aria-label="Tutorials" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-3">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+        Tutorials
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/curve_fitting/" title="Curve fitting">
+      Curve fitting
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model">
+    pyepidemics.models.model
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel">
+    CompartmentalModel
+  </a>
+<nav aria-label="CompartmentalModel" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.make_init_state">
+    make_init_state()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.make_state">
+    make_state()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pyepidemics.models.model.CompartmentalModel.solve">
+    solve()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<h1 id="compartmental-models-bases-classes">Compartmental Models bases classes<a class="headerlink" href="#compartmental-models-bases-classes" title="Permanent link">¶</a></h1>
+<div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#pyepidemics.models.model" id="pyepidemics.models.model" style="visibility: hidden; width: 0; height: 0;">
+<a class="headerlink" href="#pyepidemics.models.model" title="Permanent link">¶</a></h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="pyepidemics.models.model.CompartmentalModel">
+<code>CompartmentalModel</code>
+<a class="headerlink" href="#pyepidemics.models.model.CompartmentalModel" title="Permanent link">¶</a></h2>
+<div class="doc doc-contents">
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="pyepidemics.models.model.CompartmentalModel.make_init_state">
+<code class="highlight language-python">
+make_init_state<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">start_case</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span> </code>
+<a class="headerlink" href="#pyepidemics.models.model.CompartmentalModel.make_init_state" title="Permanent link">¶</a></h3>
+<div class="doc doc-contents">
+<p>Helper function to prepare the first state dictionary to be fed to the ODE solver
+Indeed when you have a lot of categories and compartment it can be a hassle to iterate and experiment
+Here it initialize the population on a given state, most of the time "S" (by category if there is a granularity)
+And we substract the first cases in the propagation using start_case. </p>
+<p>For example: 
+    - state = "S" and start_case = ("E",1) will create the init state dict {"S": N - 1,"E" : 1} in a SEIR model
+    - state = "S" and start_case = ("E_young",1) will create the init state dict {"S_young":N/2 - 1,"S_old" : N/2,"E_young":1}</p>
+<details class="quote">
+<summary>Source code in <code>pyepidemics\models\model.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">make_init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">state</span><span class="p">,</span><span class="n">start_case</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Helper function to prepare the first state dictionary to be fed to the ODE solver</span>
+<span class="sd">    Indeed when you have a lot of categories and compartment it can be a hassle to iterate and experiment</span>
+<span class="sd">    Here it initialize the population on a given state, most of the time "S" (by category if there is a granularity)</span>
+<span class="sd">    And we substract the first cases in the propagation using start_case. </span>
+
+<span class="sd">    For example: </span>
+<span class="sd">        - state = "S" and start_case = ("E",1) will create the init state dict {"S": N - 1,"E" : 1} in a SEIR model</span>
+<span class="sd">        - state = "S" and start_case = ("E_young",1) will create the init state dict {"S_young":N/2 - 1,"S_old" : N/2,"E_young":1}</span>
+<span class="sd">    """</span>
+    <span class="c1"># Init state dict</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Init first population values in the first state</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">granularity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">dimensions</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions_product</span><span class="p">:</span>
+            <span class="n">N</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"N"</span><span class="p">,</span><span class="n">state</span><span class="p">],</span><span class="n">dimensions</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+
+    <span class="c1"># Start the propagation with the first case</span>
+    <span class="k">if</span> <span class="n">start_case</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+        <span class="c1"># If there is a granularity (age / region)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">granularity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+            <span class="c1"># If input is a tuple (only case in one category)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">start_case</span><span class="p">,</span><span class="nb">tuple</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">start_case</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+                <span class="n">start_state</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">start_case</span>
+                <span class="n">modified_state</span> <span class="o">=</span> <span class="n">f</span><span class="s2">"{state}_{start_state.split('_',1)[1]}"</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">modified_state</span><span class="p">]</span> <span class="o">-=</span> <span class="n">value</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">start_state</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+            <span class="c1"># If input is a list of tuples (cases in several categories)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">start_case</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">start_case</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">case</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+                    <span class="n">start_state</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">case</span>
+                    <span class="n">modified_state</span> <span class="o">=</span> <span class="n">f</span><span class="s2">"{state}_{start_state.split('_',1)[1]}"</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">modified_state</span><span class="p">]</span> <span class="o">-=</span> <span class="n">value</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">start_state</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="c1"># Without granularity</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">start_case</span><span class="p">,</span><span class="nb">tuple</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">start_case</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+            <span class="n">start_state</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">start_case</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">-=</span> <span class="n">value</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">start_state</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">d</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="pyepidemics.models.model.CompartmentalModel.make_state">
+<code class="highlight language-python">
+make_state<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> </code>
+<a class="headerlink" href="#pyepidemics.models.model.CompartmentalModel.make_state" title="Permanent link">¶</a></h3>
+<div class="doc doc-contents">
+<p>Helper function to create a State object for easy manipulation
+States object are extension of Pandas Series with additions to easily extract vectors by category instead of just values
+It serves basically as a multi index when you have states by granularity
+This function will transform input y into this state of object from various input types : 
+    - arrays as list, tuple, or numpy arrays
+    - dict </p>
+<p>For example: y["I"] will return a vector y.loc[["I_young","I_adult","I_senior"]] if we have age categories ["young","adult","old]</p>
+<details class="quote">
+<summary>Source code in <code>pyepidemics\models\model.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">make_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="sd">"""Helper function to create a State object for easy manipulation</span>
+<span class="sd">    States object are extension of Pandas Series with additions to easily extract vectors by category instead of just values</span>
+<span class="sd">    It serves basically as a multi index when you have states by granularity</span>
+<span class="sd">    This function will transform input y into this state of object from various input types : </span>
+<span class="sd">        - arrays as list, tuple, or numpy arrays</span>
+<span class="sd">        - dict </span>
+
+<span class="sd">    For example: y["I"] will return a vector y.loc[["I_young","I_adult","I_senior"]] if we have age categories ["young","adult","old]</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># Create state object from array</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">State</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">value</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y</span><span class="p">)})</span>
+
+    <span class="c1"># Create state object from dict and initalize other values with 0 if not in the dict</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">dict</span><span class="p">):</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="n">State</span><span class="p">({</span><span class="n">c</span><span class="p">:</span><span class="n">y</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">})</span>
+
+    <span class="c1"># Special case where we initialize one state in the second compartment and the rest in the first</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
+        <span class="n">start_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_state</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_state</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_init_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">[</span><span class="mi">0</span><span class="p">],(</span><span class="n">start_state</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_state</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Custom exception</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"Dtype of state vector y is not recognized among tuple,list,ndarray,dict,int"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">y</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="pyepidemics.models.model.CompartmentalModel.solve">
+<code class="highlight language-python">
+solve<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_days</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">init_state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span> </code>
+<a class="headerlink" href="#pyepidemics.models.model.CompartmentalModel.solve" title="Permanent link">¶</a></h3>
+<div class="doc doc-contents">
+<p>Main ODE solver function to predict future population values in each compartments
+The function will use the network created by transitions between compartments
+    - Derivatives are computed using transitions 
+    - ODE system is integrated using scipy odeint solver</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init_state</code></td>
+<td><code>dict, list, tuple, numpy array</code></td>
+<td>
+<p>the first value to initialize the solver, ie init population</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>n_days</code></td>
+<td><code>int</code></td>
+<td>
+<p>number of days on which to run the solver, ie prediction horizon</p>
+</td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td><code>str or datetime</code></td>
+<td>
+<p>use real dates instead of just number of days</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code></code></td>
+<td>
+<p>states (States) - a custom pd.DataFrame with population by compartment over time</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>pyepidemics\models\model.py</code></summary>
+<table class="highlighttable">
+<tr>
+<td class="linenos">
+<div class="linenodiv">
+<pre><span></span>126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</pre>
+</div>
+</td>
+<td class="code">
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="n">init_state</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span><span class="n">start_date</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Main ODE solver function to predict future population values in each compartments</span>
+<span class="sd">    The function will use the network created by transitions between compartments</span>
+<span class="sd">        - Derivatives are computed using transitions </span>
+<span class="sd">        - ODE system is integrated using scipy odeint solver</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        init_state (dict, list, tuple, numpy array): the first value to initialize the solver, ie init population</span>
+<span class="sd">        n_days (int): number of days on which to run the solver, ie prediction horizon</span>
+<span class="sd">        start_date (str or datetime): use real dates instead of just number of days</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        states (States) - a custom pd.DataFrame with population by compartment over time</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># If init state is not given we use I0</span>
+    <span class="k">if</span> <span class="n">init_state</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+        <span class="n">init_state</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">I0</span><span class="p">)</span>
+
+    <span class="c1"># Transform init_state into state object</span>
+    <span class="n">init_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_state</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span>
+
+    <span class="c1"># Safety checks</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">"compartments"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">"N"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">init_state</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">,</span><span class="n">f</span><span class="s2">"Init state {init_state.values} does not sum to total population {self.N}"</span>
+    <span class="k">assert</span> <span class="n">n_days</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span>
+
+    <span class="c1"># Grid of time points (in days)</span>
+    <span class="c1"># Take offset into account</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_days</span> <span class="o">-</span> <span class="n">offset</span><span class="p">,</span> <span class="n">n_days</span> <span class="o">-</span> <span class="n">offset</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Integrate the model equations over the time grid, t.</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">derivative</span><span class="p">,</span> <span class="n">init_state</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+    <span class="c1"># Converts to DataFrame and then to custom object</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartments</span><span class="p">)</span>
+
+    <span class="c1"># Add offset into account</span>
+    <span class="k">if</span> <span class="n">offset</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span><span class="n">n_days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n_days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s2">"bfill"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">offset</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="c1"># Convert to custom object</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">CompartmentStates</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+    <span class="n">states</span><span class="o">.</span><span class="n">build_aggregates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">)</span>
+
+    <span class="c1"># If start date is given, convert to dates</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span>
+    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">unit</span> <span class="o">=</span> <span class="s2">"D"</span><span class="p">)</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+
+    <span class="k">return</span> <span class="n">states</span>
+</code></pre>
+</div>
+</td>
+</tr>
+</table>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../models_covid/" rel="prev" title="COVID19">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                COVID19
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../curve_fitting/" rel="next" title="Curve fitting">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Curve fitting
+              </div>
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.36cbf620.min.js"></script>
+<script src="../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs", "instant"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
