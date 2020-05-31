@@ -416,9 +416,9 @@
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Base Data Science snippet</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
@@ -1645,11 +1645,11 @@ if (outputEl) {{
 
     <span class="c1"># Solve the equations</span>
     <span class="n">states</span> <span class="o">=</span> <span class="n">seihdr</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Lockdown at {lockdown_after} with R0={b/gamma}&quot;</span><span class="p">)</span>
-    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;- Max hospitals {int(states[&#39;H&#39;].max())} at day {states[&#39;H&#39;].idxmax()}&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lockdown at </span><span class="si">{</span><span class="n">lockdown_after</span><span class="si">}</span><span class="s2"> with R0=</span><span class="si">{</span><span class="n">b</span><span class="o">/</span><span class="n">gamma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Max hospitals </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="si">}</span><span class="s2"> at day </span><span class="si">{</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -1773,11 +1773,11 @@ Let's see impact of delaying lockdown
     <span class="c1"># Solve the equations</span>
     <span class="n">states</span> <span class="o">=</span> <span class="n">seihdr</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Lockdown at {l} with R0={b/gamma}&quot;</span><span class="p">)</span>
-    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;- Max hospitals {int(states[&#39;H&#39;].max())} at day {states[&#39;H&#39;].idxmax()}&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lockdown at </span><span class="si">{</span><span class="n">l</span><span class="si">}</span><span class="s2"> with R0=</span><span class="si">{</span><span class="n">b</span><span class="o">/</span><span class="n">gamma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Max hospitals </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="si">}</span><span class="s2"> at day </span><span class="si">{</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -2067,11 +2067,11 @@ Now let's implemented this gradual lockdown policy
 
     <span class="c1"># Solve the equations</span>
     <span class="n">states</span> <span class="o">=</span> <span class="n">seihdr</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Lockdown at day {l} with R0={b/gamma}&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lockdown at day </span><span class="si">{</span><span class="n">l</span><span class="si">}</span><span class="s2"> with R0=</span><span class="si">{</span><span class="n">b</span><span class="o">/</span><span class="n">gamma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;- Max hospitals {int(states[&#39;H&#39;].max())} at day {states[&#39;H&#39;].idxmax()}&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Max hospitals </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="si">}</span><span class="s2"> at day </span><span class="si">{</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -2345,26 +2345,26 @@ Let's put this function in the SEIHDR model
 <span class="n">betas</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta_low</span><span class="p">,</span><span class="n">beta_high</span><span class="p">]</span>
 <span class="n">lockdown_implementation_days</span> <span class="o">=</span> <span class="mi">6</span>
 
-<span class="k">def</span> <span class="nf">beta_lockdown</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">exit</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">multiple_sigmoid_response</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">beta_high</span><span class="p">,</span><span class="n">betas</span><span class="p">,[</span><span class="n">lockdown_after</span><span class="p">,</span><span class="nb">exit</span><span class="p">],</span><span class="n">lockdown_implementation_days</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">beta_lockdown</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">exit</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">multiple_sigmoid_response</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">beta_high</span><span class="p">,</span><span class="n">betas</span><span class="p">,[</span><span class="n">lockdown_after</span><span class="p">,</span><span class="n">exit</span><span class="p">],</span><span class="n">lockdown_implementation_days</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">duration</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">]:</span>
 
-    <span class="nb">exit</span> <span class="o">=</span> <span class="n">lockdown_after</span> <span class="o">+</span> <span class="n">duration</span>
+    <span class="n">exit</span> <span class="o">=</span> <span class="n">lockdown_after</span> <span class="o">+</span> <span class="n">duration</span>
 
     <span class="c1"># Define the model</span>
-    <span class="n">seihdr</span> <span class="o">=</span> <span class="n">SEIHDR</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="k">lambda</span> <span class="n">y</span><span class="p">,</span><span class="n">t</span> <span class="p">:</span> <span class="n">beta_lockdown</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="nb">exit</span><span class="p">),</span><span class="n">delta</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="n">phi</span><span class="p">,</span><span class="n">kappa</span><span class="p">)</span>
+    <span class="n">seihdr</span> <span class="o">=</span> <span class="n">SEIHDR</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="k">lambda</span> <span class="n">y</span><span class="p">,</span><span class="n">t</span> <span class="p">:</span> <span class="n">beta_lockdown</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">exit</span><span class="p">),</span><span class="n">delta</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="n">phi</span><span class="p">,</span><span class="n">kappa</span><span class="p">)</span>
 
     <span class="c1"># Solve the equations</span>
     <span class="n">states</span> <span class="o">=</span> <span class="n">seihdr</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Lockdown at day {lockdown_after} with R0={b/gamma} for {duration} days&quot;</span><span class="p">)</span>
-    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------------------------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lockdown at day </span><span class="si">{</span><span class="n">lockdown_after</span><span class="si">}</span><span class="s2"> with R0=</span><span class="si">{</span><span class="n">b</span><span class="o">/</span><span class="n">gamma</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s2"> days&quot;</span><span class="p">)</span>
+    <span class="n">states</span><span class="o">.</span><span class="n">show_peak</span><span class="p">(</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">lockdown_after</span><span class="p">,</span><span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nb">exit</span><span class="p">,</span><span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">exit</span><span class="p">,</span><span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;- Max hospitals {int(states[&#39;H&#39;].max())} at day {states[&#39;H&#39;].idxmax()}&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Max hospitals </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="si">}</span><span class="s2"> at day </span><span class="si">{</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -2504,7 +2504,7 @@ Lockdown at day 25 with R0=0.9 for 10 days
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="kn">as</span> <span class="nn">nx</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 </code></pre></div>
 
 </div>
@@ -2714,7 +2714,7 @@ Lockdown at day 25 with R0=0.9 for 10 days
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
-<div class="highlight"><pre><span></span><code><span class="n">G</span><span class="o">.</span><span class="n">get_transition</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">G</span><span class="o">.</span><span class="n">get_transition</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -2810,7 +2810,7 @@ Lockdown at day 25 with R0=0.9 for 10 days
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
-<div class="highlight"><pre><span></span><code><span class="nb">callable</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">callable</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 </code></pre></div>
 
 </div>

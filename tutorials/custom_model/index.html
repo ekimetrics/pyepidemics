@@ -434,9 +434,9 @@ You may want to create a custom compartmental model to finetune COVID19 analysis
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Base Data Science snippet</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
@@ -538,7 +538,7 @@ You may want to create a custom compartmental model to finetune COVID19 analysis
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">sir</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -611,7 +611,7 @@ You may want to create a custom compartmental model to finetune COVID19 analysis
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="n">states</span> <span class="o">=</span> <span class="n">nsir</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -684,7 +684,7 @@ Such models can also be used to model the dynamics of any deterministic system. 
 
 <span class="n">lotka</span> <span class="o">=</span> <span class="n">LotkaVolterra</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">gamma</span><span class="p">)</span>
 <span class="n">states</span> <span class="o">=</span> <span class="n">lotka</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">n_days</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span><span class="n">init_state</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;rabbit&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;fox&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span><span class="n">d</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="n">states</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plotly</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
 </div>

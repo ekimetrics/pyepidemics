@@ -434,9 +434,9 @@ Curve fitting is the simple process of finding a surrogate function approximatin
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Base Data Science snippet</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
@@ -595,7 +595,7 @@ More on the wikipedia page https://en.wikipedia.org/wiki/Logistic_function</p>
 
 <span class="c1"># Plot many functions</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logistic_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;k={k}&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logistic_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Display figure</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Logistic functions&quot;</span><span class="p">)</span>
@@ -651,7 +651,7 @@ Formula is :
 
 <span class="c1"># Plot many functions</span>
 <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;sigma={sigma}&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gaussian_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">mu</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Display figure</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gaussian functions&quot;</span><span class="p">)</span>
@@ -769,7 +769,7 @@ Let's predict for 20 days after the date and visualize the fit
 
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="n">show_fit</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="n">show_fit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -803,7 +803,7 @@ Let's predict for 20 days after the date and visualize the fit
 <div class="input">
 
 <div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">CurveFittingModel</span><span class="p">(</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span>
-<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">cases</span><span class="p">[</span><span class="s2">&quot;ICU&quot;</span><span class="p">],</span><span class="n">show_fit</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">cases</span><span class="p">[</span><span class="s2">&quot;ICU&quot;</span><span class="p">],</span><span class="n">show_fit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
@@ -839,7 +839,7 @@ It works ok, but actually ICU cases are not a proper gaussian curve, we have a s
 </div>
 </div>
 <div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">CurveFittingModel</span><span class="p">(</span><span class="s2">&quot;skewed_gaussian&quot;</span><span class="p">)</span>
-<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">cases</span><span class="p">[</span><span class="s2">&quot;ICU&quot;</span><span class="p">],</span><span class="n">show_fit</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">cases</span><span class="p">[</span><span class="s2">&quot;ICU&quot;</span><span class="p">],</span><span class="n">show_fit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
