@@ -1,5 +1,5 @@
 # pyepidemics
-![logo](docs/docs/img/logo_pyepidemics.png)
+![logo](docs/img/logo_pyepidemics.png)
 
 **Open-source epidemics modeling Python library**
 
@@ -20,7 +20,7 @@
 
 
 # Contributors
-![](docs/docs/img/ekimetrics.png)
+![](docs/img/ekimetrics.png)
 
 The library has been initially developed by [Ekimetrics](www.ekimetrics.com) under the coalition of French AI companies CoData ot help French government response to the COVID19 pandemics. Main contributors are:
 - [Théo Alves Da Costa](mailto:theo.alvesdacosta@ekimetrics.com), Ekimetrics
