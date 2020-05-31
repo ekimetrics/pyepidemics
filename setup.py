@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyepidemics", # Replace with your own username
-    version="0.0.2",
+    version="0.0.3",
     author = 'Theo Alves Da Costa',
     author_email = 'theo.alvesdacosta@ekimetrics.com',
     description = 'Open source epidemiological modeling in Python',
@@ -27,6 +27,7 @@ setuptools.setup(
         "statsmodels==0.10.1",
         "networkx>=2.2",
         "PyYAML==5.3.1",
+        "xlrd >= 1.0.0",
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

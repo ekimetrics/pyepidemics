@@ -2,7 +2,6 @@
 
 import networkx as nx
 import matplotlib.pyplot as plt
-from numba import jit
 
 import warnings
 warnings.filterwarnings("ignore") 
