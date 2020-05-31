@@ -24,6 +24,7 @@
 
 The library has been initially developed by [Ekimetrics](www.ekimetrics.com) under the coalition of French AI companies CoData ot help French government response to the COVID19 pandemics. Main contributors are:
 - [Théo Alves Da Costa](mailto:theo.alvesdacosta@ekimetrics.com), Ekimetrics
+- Emilie Rannou, Ekimetrics
 - Léo Grosjean, Ekimetrics
 - Pierre Carles, Ekimetrics
 - Nicolas Chesneau, Ekimetrics
@@ -33,10 +34,17 @@ The library has been initially developed by [Ekimetrics](www.ekimetrics.com) und
 # Installation
 
 ## Install using pip
-> WIP
+We recommend to create a virtual environment first, then you can install the library using the command 
+```
+pip install pyepidemics
+```
+The repo is on PyPI at https://pypi.org/project/pyepidemics/
 
 ## Install from source
-> WIP
+You can also install the repository by cloning it locally and using it either locally or installing the wheel by calling first
+```
+python setup.py sdist bdist_wheel
+```
 
 
 # Documentation
@@ -46,7 +54,6 @@ Documentation is available at https://collectif-codata.github.io/pyepidemics
 ```
 - pyepidemics/          --------- Python library centralizing source code
     - dataset/          --------- Helpers to get up-to-date COVID19 datasets
-    - economics/        --------- Experimental work on economics modeling
     - models/           --------- Compartmental models code
     - params/           --------- Epidemiological parameters calibration optimizers
     - policies/         --------- Scenarios implementation
