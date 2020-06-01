@@ -15,7 +15,7 @@ def sigmoid_response(t,start_date,start,end,duration,interval = 0.95):
     return (start-end) / (1 + np.exp(-k*(-t+inflection))) + end
 
 
-def multiple_sigmoid_response(t,start,values,dates,durations,interval = 0.95):
+def multiple_sigmoid_response(t,start,values,dates,durations = 4,interval = 0.95):
 
     duration = durations[0] if isinstance(durations,list) else durations
 
@@ -27,6 +27,36 @@ def multiple_sigmoid_response(t,start,values,dates,durations,interval = 0.95):
         yt += sigmoid_response(t,dates[i],0,values[i] - values[i-1],duration,interval)
 
     return yt
+
+
+def piecewise_response(t,start,values,dates):
+    all_dates = [0]+list(dates)
+    all_values = [start]+list(values)
+    intervals = [(all_dates[i],all_dates[i+1]) for i in range(len(all_dates) - 1)]
+    for i in range(len(all_dates) - 1):
+        if all_dates[i] <= t < all_dates[i+1]:
+            return all_values[i]
+    return all_values[-1]
+
+
+def make_dynamic_fn(values,transition = 4,sigmoid = True):
+    start,values = values[0],values[1:]
+
+    if len(values[0]) == 2:
+
+        values,dates = list(zip(*values))
+
+    elif len(values[0]) == 3:
+        values,dates,transition = list(zip(*values))
+        transition = list(transition)
+
+    else:
+        raise Exception(f"Invalid values {values}")
+
+    if sigmoid:
+        return lambda t : multiple_sigmoid_response(t,start,values,dates,transition)
+    else:
+        return lambda t : piecewise_response(t,start,values,dates)
 
 
 

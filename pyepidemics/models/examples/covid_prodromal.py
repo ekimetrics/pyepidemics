@@ -78,7 +78,7 @@ class COVID19Prodromal(CompartmentalModel):
             },
             "Is":{
                 "ICU":lambda y,t : symptoms_to_icu_rate * (proba_icu) * y["Is"],
-                "H":lambda y,t : symptoms_to_icu_rate * (1-proba_icu) * y["Is"],
+                "H":lambda y,t : symptoms_to_hospital_rate * (1-proba_icu) * y["Is"],
             },
             "ICU":{
                 "R":lambda y,t : recovery_rate_icu * y["ICU"],

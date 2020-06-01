@@ -34,6 +34,7 @@ nav:
   - Home: 
     - index.md
     - Quickstart: quickstart.md
+    - Installation: installation.md
     - References: references.md
   # - Documentation: 
   #   - Model examples:
@@ -45,6 +46,10 @@ nav:
   #   - Calibration optimizer: documentation/params_optimizer.md
   #   - Datasets: documentation/datasets.md
   - Tutorials:
+    - Quickstart: tutorials/quickstart.ipynb
+    - Beyond SIR modeling: tutorials/beyond-sir.ipynb
+    - Creating a COVID model: tutorials/covid.ipynb
+    - Epidemiological parameters calibration: tutorials/calibration.ipynb
     - Creating a custom model: tutorials/custom_model.ipynb
     - Curve fitting: tutorials/curve_fitting.ipynb
     # - SIR model: model_SIR.ipynb
