@@ -174,7 +174,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../custom_model/" class="md-tabs__link md-tabs__link--active">
+        <a href="../quickstart/" class="md-tabs__link md-tabs__link--active">
           Tutorials
         </a>
       
@@ -275,6 +275,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../references/" title="References" class="md-nav__link">
       References
     </a>
@@ -319,6 +331,54 @@
 
 
   <li class="md-nav__item">
+    <a href="../quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../beyond-sir/" title="Beyond SIR modeling" class="md-nav__link">
+      Beyond SIR modeling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../covid/" title="Creating a COVID model" class="md-nav__link">
+      Creating a COVID model
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../calibration/" title="Epidemiological parameters calibration" class="md-nav__link">
+      Epidemiological parameters calibration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../custom_model/" title="Creating a custom model" class="md-nav__link">
       Creating a custom model
     </a>
@@ -339,9 +399,56 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Curve fitting
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Curve fitting" class="md-nav__link md-nav__link--active">
       Curve fitting
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developer-import" class="md-nav__link">
+    Developer import
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-google-colab" class="md-nav__link">
+    On Google Colab
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-library-is-correctly-installed" class="md-nav__link">
+    Verify the library is correctly installed
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -367,6 +474,37 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developer-import" class="md-nav__link">
+    Developer import
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-google-colab" class="md-nav__link">
+    On Google Colab
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-library-is-correctly-installed" class="md-nav__link">
+    Verify the library is correctly installed
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -421,6 +559,13 @@
 <div class="cell border-box-sizing text_cell rendered">
 <p><div class="inner_cell" markdown="1">
 <div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<a href="https://colab.research.google.com/github/collectif-codata/pyepidemics/blob/master/docs/tutorials/curve_fitting.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>
@@ -430,53 +575,61 @@ Curve fitting is the simple process of finding a surrogate function approximatin
 </div>
 </div></p>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h5 id="developer-import">Developer import<a class="headerlink" href="#developer-import" title="Permanent link">&para;</a></h5>
+<p></div>
+</div></p>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
-<div class="highlight"><pre><span></span><code><span class="c1"># Base Data Science snippet</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span>
-
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
 <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 
 <span class="c1"># Developer import</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../../&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 </div>
 
-<div class="output_wrapper" markdown="1">
-<div class="output" markdown="1">
-
-
-<div class="output_area" markdown="1">
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload
-</pre>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h5 id="on-google-colab">On Google Colab<a class="headerlink" href="#on-google-colab" title="Permanent link">&para;</a></h5>
+<p>Uncomment the following line to install the library locally
 </div>
-
+</div></p>
 </div>
-</div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
+<div class="highlight"><pre><span></span><code><span class="c1"># !pip install pyepidemics</span>
+</code></pre></div>
+
 </div>
+
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h5 id="verify-the-library-is-correctly-installed">Verify the library is correctly installed<a class="headerlink" href="#verify-the-library-is-correctly-installed" title="Permanent link">&para;</a></h5>
+<p></div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyepidemics</span>
 </code></pre></div>
 
 </div>
 
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <p><div class="inner_cell" markdown="1">
 <div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
