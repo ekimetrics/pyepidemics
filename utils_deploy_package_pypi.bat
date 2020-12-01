@@ -1,1 +1,3 @@
 twine upload dist/*
+
+pause
