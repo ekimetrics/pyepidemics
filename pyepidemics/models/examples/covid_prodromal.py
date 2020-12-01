@@ -55,12 +55,13 @@ class COVID19Prodromal(CompartmentalModel):
         # Parameters
         self.N = N
         self.beta = self._make_beta_parameter(beta)
+        self.isolation_ratio = self._make_beta_parameter(isolation_ratio)
 
 
         # Prepare transitions
         transitions = {
             "S":{
-                "E":lambda y,t : y["S"] / N * self.beta(y,t) * (y["Ip"] + y["Ia"] + isolation_ratio * (y["Im"] + y["Is"]))
+                "E":lambda y,t : y["S"] / N * self.beta(y,t) * (y["Ip"] + y["Ia"] + self.isolation_ratio(y,t) * (y["Im"] + y["Is"]))
             },
             "E":{
                 "Ip":lambda y,t: incubation_rate * y["E"],
@@ -94,7 +95,12 @@ class COVID19Prodromal(CompartmentalModel):
         # Add transition
         self.add_transitions(transitions)
 
-    def R0(self, beta):
+    def R0(self,beta,isolation_ratio = None):
+        gamma = self.get_gamma(isolation_ratio)
+        return beta / gamma
+
+
+    def get_gamma(self,isolation_ratio = None):
 
         # Prepare probabilities
         pa = self.params["proba_asymptomatic"]
@@ -106,9 +112,10 @@ class COVID19Prodromal(CompartmentalModel):
         rate_mild = self.params["recovery_rate_mild"]
         rate_severe = (1-proba_icu) * self.params["symptoms_to_hospital_rate"] + proba_icu * self.params["symptoms_to_icu_rate"]
         rate_prodromal = self.params["prodromal_rate"]
-        isolation_ratio = self.params["isolation_ratio"]
+        if isolation_ratio is None:
+            isolation_ratio = self.params["isolation_ratio"]
 
-        return beta * (
+        return 1 / (
             1 / rate_prodromal + \
             pa / rate_asymptomatic + \
             (isolation_ratio * (1-pa-ps) / rate_mild) + \

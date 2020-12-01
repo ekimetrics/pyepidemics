@@ -174,6 +174,7 @@ def fetch_daily_case_france(return_data = True,smooth = True):
         [["date","cas_confirmes","deces","gueris","hospitalises","reanimation"]]
         .drop_duplicates(subset = ["date"])
         .fillna(0.0)
+        .iloc[:-1] # Safety check
         .assign(date = lambda x : pd.to_datetime(x["date"]))
         .set_index("date")
     )
@@ -184,6 +185,7 @@ def fetch_daily_case_france(return_data = True,smooth = True):
     cases = cases.reindex(date_range).interpolate()
 
     # Clean and logsmooth
+    cases["I"] = clean_series(cases["cas_confirmes"],logsmooth = smooth)
     cases["Is"] = clean_series(cases["cas_confirmes"] - (cases["deces"] + cases["gueris"]),logsmooth=smooth)
     cases["D"] = clean_series(cases["deces"],logsmooth = smooth)
     cases["R"] = clean_series(cases["gueris"],logsmooth = smooth)

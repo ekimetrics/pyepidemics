@@ -17,12 +17,12 @@ class SIR(CompartmentalModel):
 
         # Parameters
         self.N = N # Total population
-        self.beta = beta # How many person each person infects per day
-        self.gamma = gamma # Rate of infection, duration = 1/gamma
+        self.beta = self.make_callable(beta) # How many person each person infects per day
+        self.gamma = self.make_callable(gamma) # Rate of infection, duration = 1/gamma
         
         # Add transition
-        self.add_transition("S","I",lambda y,t: self.beta * y["S"] * y["I"] / self.N)
-        self.add_transition("I","R",lambda y,t: self.gamma * y["I"])
+        self.add_transition("S","I",lambda y,t: self.beta(y,t) * y["S"] * y["I"] / self.N)
+        self.add_transition("I","R",lambda y,t: self.gamma(y,t) * y["I"])
 
 
     def R0(self) -> float:
