@@ -175,7 +175,8 @@ def fetch_daily_case_france(return_data = True,smooth = True):
         .drop_duplicates(subset = ["date"])
         .fillna(0.0)
         .iloc[:-1] # Safety check
-        .assign(date = lambda x : pd.to_datetime(x["date"]))
+        .assign(date = lambda x : pd.to_datetime(x["date"],errors="coerce"))
+        .dropna(subset = ["date"])
         .set_index("date")
     )
 
