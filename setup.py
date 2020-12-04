@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyepidemics", # Replace with your own username
-    version="0.0.7",
+    version="0.0.8",
     author = 'Theo Alves Da Costa',
     author_email = 'theo.alvesdacosta@ekimetrics.com',
     description = 'Open source epidemiological modeling in Python',
