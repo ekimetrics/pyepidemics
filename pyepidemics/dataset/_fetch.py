@@ -133,7 +133,7 @@ def _process_contact(raw_data, age_groups_boundaries=[18,65]):
 
     return data
 
-def fetch_daily_case(data_home=None, update=True, return_data=False):
+def fetch_daily_case(data_home=None, update=True, return_data=False,download = False):
     """
     Download daily case in France per departement
     Can return dataframe or not
@@ -147,19 +147,26 @@ def fetch_daily_case(data_home=None, update=True, return_data=False):
       $ from covid.dataset import fetch_daily_case
       $ data = fetch_daily_case(return_data=True)
     """
-    data_home = get_data_home(data_home=data_home)
-    
-    filepath = join(data_home, "daily_cases.csv")
-    if exists(filepath):
-        if update:
-            download_file(CASE_URL, filepath)
+
+    if download:
+
+        data_home = get_data_home(data_home=data_home)
+        
+        filepath = join(data_home, "daily_cases.csv")
+        if exists(filepath):
+            if update:
+                download_file(CASE_URL, filepath)
+            else:
+                logging.info(f"File already exists at {filepath} and update = False")
         else:
-            logging.info(f"File already exists at {filepath} and update = False")
+                download_file(CASE_URL, filepath)
+        
+        if return_data:
+            data = pd.read_csv(filepath)
+            return data
+
     else:
-            download_file(CASE_URL, filepath)
-    
-    if return_data:
-        data = pd.read_csv(filepath)
+        data = pd.read_csv(CASE_URL)
         return data
 
 
