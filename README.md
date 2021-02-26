@@ -48,7 +48,7 @@ python setup.py sdist bdist_wheel
 
 
 # Documentation
-Documentation is available at https://collectif-codata.github.io/pyepidemics
+Documentation is available at https://ekimetrics.github.io/pyepidemics
 
 ## Folder structure
 ```
