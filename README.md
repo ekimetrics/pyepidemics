@@ -21,8 +21,9 @@
 
 # Contributors
 ![](docs/img/ekimetrics.png)
+![](https://www.collectif-codata.fr/lib_OqsVpKSlsxxiQOXb/i8dxhg8e16ikdp27.png?w=400)
 
-The library has been initially developed by [Ekimetrics](www.ekimetrics.com) under the coalition of French AI companies CoData ot help French government response to the COVID19 pandemics. Main contributors are:
+The library has been initially developed by [Ekimetrics](www.ekimetrics.com) under the coalition of French AI companies [CoData](https://www.collectif-codata.fr/) to help French government response to the COVID19 pandemics. Main contributors are:
 - [Théo Alves Da Costa](mailto:theo.alvesdacosta@ekimetrics.com), Ekimetrics
 - Emilie Rannou, Ekimetrics
 - Léo Grosjean, Ekimetrics
