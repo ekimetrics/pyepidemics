@@ -26,7 +26,7 @@ setuptools.setup(
         "tqdm==4.46.0",
         "statsmodels==0.10.1",
         "networkx==2.3",
-        "PyYAML==5.3.1",
+        "PyYAML==5.4",
         "xlrd >= 1.0.0",
     ],
     classifiers=[
