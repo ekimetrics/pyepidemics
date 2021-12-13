@@ -1,33 +1,32 @@
 .md-content__inner.md-typeset {
     font-size:14px ;
-    /* padding-left: 25px;
-    border-left: 4px solid rgba(230, 230, 230);
-    margin-bottom: 80px; */
   }
 
 .output_area{
     font-size:12px;
 }
 
-.md-grid{
+/* .md-grid{
     max-width: 70rem;
-}
+} */
 
-.md-sidebar--secondary{
+/* .md-sidebar--secondary{
     margin-left: 58rem;
 
-}
+} */
 
 .md-header{
+    background-color: #16293c;
     /* background-image: linear-gradient(to left, #30cfd0 0%, #330867 100%); */
     /* background-image: linear-gradient(to left, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
     /* background-image: linear-gradient(to left, #FF3CAC 0%,#17adc9 30%, #562B7C 52%, #0b3f67 100%); */
-    background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%);
+    /* background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%); */
 }
 
 
 .md-footer{
-    background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%);
+    background-color: #16293c;
+    /* background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%); */
     /* background-image: linear-gradient(to left, #FF3CAC 0%,#17adc9 30%, #562B7C 52%, #0b3f67 100%); */
     /* background-image: linear-gradient(to left, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
     /* background-image: linear-gradient(to left, #FF3CAC 0%, #562B7C 52%, #2B86C5 100%); */
@@ -37,7 +36,8 @@
 
 
 .md-tabs{
-    background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%);
+    background-color: #16293c;
+    /* background-image: linear-gradient(to left, #4286f4 0%, #0b3f67 100%); */
     /* background-image: linear-gradient(to left, #FF3CAC 0%,#17adc9 30%, #562B7C 52%, #0b3f67 100%); */
     /* background-image: linear-gradient(to left, #FF3CAC 0%, #562B7C 52%, #2B86C5 100%); */
     /* background-image: linear-gradient(to left, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
@@ -49,6 +49,6 @@
 
 
   /* Primary color shades */
-  --md-primary-fg-color:               #330867;
+  --md-primary-fg-color:               #16293c;
 
   }

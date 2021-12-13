@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyepidemics", # Replace with your own username
-    version="0.0.9",
+    version="0.0.10",
     author = 'Theo Alves Da Costa',
     author_email = 'theo.alvesdacosta@ekimetrics.com',
     description = 'Open source epidemiological modeling in Python',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/collectif-codata/pyepidemics",
+    url="https://github.com/ekimetrics/pyepidemics",
     packages=setuptools.find_packages(),
     install_requires=[
         "scipy==1.4.1",
@@ -36,7 +36,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     project_urls={
-        'Documentation': 'https://collectif-codata.github.io/pyepidemics/',
+        'Documentation': 'https://ekimetrics.github.io/pyepidemics/',
     },
     python_requires='>=3.6',
 )
